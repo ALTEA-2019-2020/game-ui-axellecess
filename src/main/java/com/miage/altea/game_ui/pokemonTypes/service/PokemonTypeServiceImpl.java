@@ -5,12 +5,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 @Service
 public class PokemonTypeServiceImpl implements PokemonTypeService {
@@ -21,6 +23,7 @@ public class PokemonTypeServiceImpl implements PokemonTypeService {
     public List<PokemonType> listPokemonsTypes() {
         List<PokemonType> pokemonsTypes;
 
+        Locale language = LocaleContextHolder.getLocale();
         pokemonsTypes = Arrays.asList(restTemplate.getForObject(pokemonTypeServiceUrl + "/pokemon-types/", PokemonType[].class));
         return pokemonsTypes;
     }
