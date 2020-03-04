@@ -2,6 +2,7 @@ package com.miage.altea.game_ui.trainers.service;
 
 import com.miage.altea.game_ui.trainers.bo.Trainer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,12 +26,26 @@ public class TrainerServiceImpl implements TrainerService {
     }
 
     @Override
+    public List<Trainer> getOtherTrainers(String name) {
+        List<Trainer> trainerList = Arrays.asList(restTemplate.getForObject(trainerServiceUrl + "/trainers/", Trainer[].class));
+
+        for(Trainer t : trainerList){
+            if(t.getName().equals(name)){
+                trainerList.remove(t);
+                return trainerList;
+            }
+        }
+        return trainerList;
+    }
+
+    @Override
     public Trainer getTrainer(String name){
         Trainer trainer = restTemplate.getForObject(trainerServiceUrl + "/trainers/" + name, Trainer.class);
         return trainer;
     }
 
     @Autowired
+    @Qualifier("trainerApiRestTemplate")
     void setRestTemplate(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
