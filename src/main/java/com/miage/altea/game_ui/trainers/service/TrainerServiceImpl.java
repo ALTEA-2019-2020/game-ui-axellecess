@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -29,13 +30,13 @@ public class TrainerServiceImpl implements TrainerService {
     public List<Trainer> getOtherTrainers(String name) {
         List<Trainer> trainerList = Arrays.asList(restTemplate.getForObject(trainerServiceUrl + "/trainers/", Trainer[].class));
 
+        List<Trainer> trainers = new ArrayList<>();
         for(Trainer t : trainerList){
-            if(t.getName().equals(name)){
-                trainerList.remove(t);
-                return trainerList;
+            if(!t.getName().equals(name)){
+                trainers.add(t);
             }
         }
-        return trainerList;
+        return trainers;
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.miage.altea.game_ui.controller;
 
+import com.miage.altea.game_ui.pokemonTypes.service.PokemonTypeService;
 import com.miage.altea.game_ui.trainers.bo.Trainer;
 import com.miage.altea.game_ui.trainers.service.TrainerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import java.util.List;
 public class TrainerController {
 
     private TrainerService trainerService;
+    private PokemonTypeService pokemonTypeService;
 
     @GetMapping("/trainers")
     public ModelAndView trainers(Principal principal){
@@ -25,6 +27,10 @@ public class TrainerController {
 
         var modelAndView = new ModelAndView("trainers");
         modelAndView.addObject("trainers", trainerList);
+
+        for(Trainer t : trainerList){
+            t.setPokemonTypes(pokemonTypeService.getPokemonType(t.getTeam()));
+        }
 
         return modelAndView;
     }
@@ -44,6 +50,7 @@ public class TrainerController {
     public ModelAndView getProfile(Principal principal){
         // Principal principal = (Principal) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Trainer trainer = trainerService.getTrainer(principal.getName());
+        trainer.setPokemonTypes(pokemonTypeService.getPokemonType(trainer.getTeam()));
 
         var modelAndView = new ModelAndView("trainer");
         modelAndView.addObject("trainer", trainer);
@@ -55,5 +62,11 @@ public class TrainerController {
     public void setTrainerService(TrainerService trainerService) {
         this.trainerService = trainerService;
     }
+
+    @Autowired
+    public void setPokemonTypeService(PokemonTypeService pokemonTypeService){
+        this.pokemonTypeService = pokemonTypeService;
+    }
+
 
 }
