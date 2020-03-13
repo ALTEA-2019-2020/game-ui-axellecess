@@ -4,6 +4,7 @@ import com.miage.altea.game_ui.pokemonTypes.bo.PokemonType;
 import com.miage.altea.game_ui.trainers.bo.Pokemon;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -25,22 +26,23 @@ public class PokemonTypeServiceImpl implements PokemonTypeService {
     public List<PokemonType> listPokemonsTypes() {
         List<PokemonType> pokemonsTypes;
 
-        HttpHeaders headers = new HttpHeaders();
-        headers.setAcceptLanguageAsLocales(List.of(LocaleContextHolder.getLocale()));
-        HttpEntity<String> httpEntity = new HttpEntity<>(headers);
-        restTemplate.exchange(pokemonTypeServiceUrl + "/pokemon-types/", HttpMethod.GET, httpEntity, PokemonType[].class);
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.setAcceptLanguageAsLocales(List.of(LocaleContextHolder.getLocale()));
+//        HttpEntity<String> httpEntity = new HttpEntity<>(headers);
+//        restTemplate.exchange(pokemonTypeServiceUrl + "/pokemon-types/", HttpMethod.GET, httpEntity, PokemonType[].class);
 
         pokemonsTypes = Arrays.asList(restTemplate.getForObject(pokemonTypeServiceUrl + "/pokemon-types/", PokemonType[].class));
         return pokemonsTypes;
     }
 
+    @Cacheable("pokemon-types")
     public PokemonType getPokemonType(int id) {
         PokemonType pokemonType;
 
-        HttpHeaders headers = new HttpHeaders();
-        headers.setAcceptLanguageAsLocales(List.of(LocaleContextHolder.getLocale()));
-        HttpEntity<String> httpEntity = new HttpEntity<>(headers);
-        restTemplate.exchange(pokemonTypeServiceUrl + "/pokemon-types/" + id, HttpMethod.GET, httpEntity, PokemonType.class);
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.setAcceptLanguageAsLocales(List.of(LocaleContextHolder.getLocale()));
+//        HttpEntity<String> httpEntity = new HttpEntity<>(headers);
+//        pokemonType = restTemplate.exchange(pokemonTypeServiceUrl + "/pokemon-types/" + id, HttpMethod.GET, httpEntity, PokemonType.class).getBody();
 
         pokemonType = restTemplate.getForObject(pokemonTypeServiceUrl + "/pokemon-types/" + id, PokemonType.class);
         return pokemonType;
@@ -57,7 +59,7 @@ public class PokemonTypeServiceImpl implements PokemonTypeService {
     }
 
     @Autowired
-    void setRestTemplate(RestTemplate restTemplate) {
+    public void setRestTemplate(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
 
