@@ -58,6 +58,17 @@ public class TrainerController {
         return modelAndView;
     }
 
+
+    @GetMapping("/fight/{opponent}")
+    public ModelAndView fight(Principal principal, @PathVariable String opponent){
+        var modelAndView = new ModelAndView("fight");
+
+        modelAndView.addObject("trainerName", principal.getName());
+        modelAndView.addObject("opponentName", opponent);
+
+        return modelAndView;
+    }
+
     @Autowired
     public void setTrainerService(TrainerService trainerService) {
         this.trainerService = trainerService;
