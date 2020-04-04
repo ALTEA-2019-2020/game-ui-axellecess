@@ -14,7 +14,7 @@ Pour accéder aux fonctionnalités, il faudra se connecter avec les identifiants
   password = ash_password
   ```
   
-  Ash
+  Misty
   ```javascript
   userName = Misty
   password = misty_password
