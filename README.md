@@ -21,3 +21,5 @@ Pour accéder aux fonctionnalités, il faudra se connecter avec les identifiants
   ```
   
 </details>
+
+Il y a une collection Postman pour tester les fonctionnalités disponibles danx le dossier src/test/resources.
