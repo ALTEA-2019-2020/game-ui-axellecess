@@ -1,5 +1,5 @@
 # Game UI
-## Par Cess Axelle - M2 MIAGE FA
+### Par Cess Axelle - M2 MIAGE FA
 
 Ce projet est pour la gestion des objets des projets pécedents mais avec une IHM.
 Il est déployé sur Heroku, accessible à ce lien : **https://trainer-api-juwit-cess-ui.herokuapp.com/**.
