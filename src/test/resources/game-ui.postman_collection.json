@@ -1,0 +1,115 @@
+{
+	"info": {
+		"_postman_id": "6eefd264-384d-472f-ba25-51e75cd84f5d",
+		"name": "game-ui",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "profile",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "ash_password",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "Ash",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://trainer-api-juwit-cess-ui.herokuapp.com/profile",
+					"protocol": "https",
+					"host": [
+						"trainer-api-juwit-cess-ui",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"profile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "trainers",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "ash_password",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "Ash",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://trainer-api-juwit-cess-ui.herokuapp.com/trainers",
+					"protocol": "https",
+					"host": [
+						"trainer-api-juwit-cess-ui",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"trainers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "pokedex",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "ash_password",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "Ash",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://trainer-api-juwit-cess-ui.herokuapp.com/pokedex",
+					"protocol": "https",
+					"host": [
+						"trainer-api-juwit-cess-ui",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"pokedex"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
